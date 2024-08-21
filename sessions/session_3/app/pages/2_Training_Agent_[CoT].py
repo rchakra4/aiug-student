@@ -3,6 +3,8 @@ import prompts
 import re
 from openai import OpenAI
 from base_model_utils import call_chat_model, call_image_model
+from dotenv import load_dotenv
+load_dotenv()
 
 client = OpenAI()
 

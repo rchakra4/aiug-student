@@ -41,7 +41,19 @@ def generate_nutrition():
 
 @app.post("/event")
 def generate_events(data: Dict):
-    # TO DO - Use the provided data to find events
+    event_type = data.get("event_type")
+    location = data.get("location")
+    time_frame = data.get("time_frame")
+    
+    # Use the extracted data to generate a query string
+    user_input = f"Find me {event_type} events in {location} around {time_frame} time frame in 2024. Return back specific events."
+    
+    # Set memory for a specific thread
+    config = {"configurable": {"thread_id": "rc45"}}
 
-    response = 'tbd'
+    # call the agent executor with the user input and configuration
+    response = agent_executor.invoke({"messages": [("user", user_input)]}, config)
+
+    response = response["messages"][-1].content
+
     return {"response": response}

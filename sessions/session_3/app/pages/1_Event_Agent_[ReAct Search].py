@@ -2,8 +2,6 @@ import streamlit as st
 from openai import OpenAI
 import requests
 
-client = OpenAI()
-
 st.set_page_config(layout="wide")
 
 # Header
@@ -39,15 +37,7 @@ with st.form(key='event_form'):
     submit_button = st.form_submit_button(label='Submit')
 
 if submit_button:
-    payload = {
-            "event_type": event_type,
-            "location": location,
-            "time_frame": time_frame
-        }
-    
-    with st.spinner(f'Looking for {location} {event_type} in {time_frame}...'):
-        response = requests.post("http://localhost:8000/event", json=payload).json()
-        st.session_state.event_response = response["response"]
+    st.write('to do ...')
     
 # display output
 st.write(st.session_state.event_response)
